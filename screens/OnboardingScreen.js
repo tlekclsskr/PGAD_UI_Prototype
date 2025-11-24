@@ -33,10 +33,7 @@ const OnboardingScreen = ({ navigation }) => {
             {[0, 1, 2].map((index) => (
               <View
                 key={index}
-                style={[
-                  styles.dot,
-                  index === currentIndex && styles.dotActive,
-                ]}
+                style={[styles.dot, index === currentIndex && styles.dotActive]}
               />
             ))}
           </View>
@@ -45,8 +42,9 @@ const OnboardingScreen = ({ navigation }) => {
           <View style={styles.textContainer}>
             <Text style={styles.title}>Welcome to PGAD</Text>
             <Text style={styles.subtitle}>
-              Enjoy these app pleaseeee I beg u{"\n"}
-              Change this later
+              Your personal gait and fall-risk companion.{"\n"}
+              Monitor walking patterns, detect risks early, and keep your loved
+              ones safer every day.
             </Text>
           </View>
 

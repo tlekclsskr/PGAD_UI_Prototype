@@ -14,7 +14,7 @@ import { BarChart, LineChart } from "react-native-chart-kit";
 import { Ionicons } from "@expo/vector-icons";
 
 const screenWidth = Dimensions.get("window").width;
-const chartWidth = screenWidth - 64;
+const chartWidth = Math.min(screenWidth - 32, 400);
 
 // Mock data สำหรับแต่ละเดือน
 const monthlyData = [
@@ -24,7 +24,7 @@ const monthlyData = [
     distance: 12, 
     monthName: "January 2025",
     dailyAnomalies: [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    dailyDistances: [0.5, 0.3, 0.4, 0.2, 0.6, 0.4, 0.5, 0.3, 0.2, 0.4, 0.5, 0.3, 0.4, 0.2, 0.5, 0.3, 0.4, 0.2, 0.5, 0.4, 0.3, 0.2, 0.4, 0.5, 0.3, 0.2, 0.4, 0.5, 0.3, 0.2, 0.4]
+    dailyDistances: [0.5, 0.3, 0.4, 0.8, 0.6, 0.4, 0.5, 0.3, 0.7, 0.4, 0.5, 0.3, 0.4, 0.9, 0.5, 0.3, 0.4, 0.6, 0.5, 0.4, 0.8, 0.2, 0.4, 0.5, 0.3, 0.7, 0.4, 0.5, 0.3, 0.6, 0.4]
   },
   { 
     month: "Feb", 
@@ -32,7 +32,7 @@ const monthlyData = [
     distance: 18, 
     monthName: "February 2025",
     dailyAnomalies: [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    dailyDistances: [0.6, 0.7, 0.5, 0.8, 0.6, 0.7, 0.5, 0.9, 0.6, 0.5, 0.7, 0.8, 0.6, 0.5, 0.7, 0.6, 0.8, 0.5, 0.7, 0.6, 0.5, 0.8, 0.7, 0.6, 0.5, 0.7, 0.8, 0.6]
+    dailyDistances: [0.6, 0.7, 0.5, 0.8, 0.6, 0.7, 1.2, 0.9, 0.6, 0.5, 0.7, 0.8, 0.6, 1.1, 0.7, 0.6, 0.8, 0.5, 0.7, 0.6, 0.5, 0.8, 0.7, 0.6, 1.3, 0.7, 0.8, 0.6]
   },
   { 
     month: "Mar", 
@@ -40,7 +40,7 @@ const monthlyData = [
     distance: 21, 
     monthName: "March 2025",
     dailyAnomalies: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    dailyDistances: [0.7, 0.8, 0.6, 0.9, 0.7, 0.8, 0.6, 1.0, 0.7, 0.6, 0.8, 0.9, 0.7, 0.6, 0.8, 0.7, 0.9, 0.6, 0.8, 0.7, 0.6, 0.9, 0.8, 0.7, 0.6, 0.8, 0.9, 0.7, 0.6, 0.8, 0.7]
+    dailyDistances: [0.7, 0.8, 0.6, 0.9, 0.7, 0.8, 0.6, 1.0, 0.7, 1.4, 0.8, 0.9, 0.7, 0.6, 0.8, 0.7, 0.9, 0.6, 0.8, 0.7, 0.6, 0.9, 0.8, 1.2, 0.6, 0.8, 0.9, 0.7, 0.6, 0.8, 0.7]
   },
   { 
     month: "Apr", 
@@ -72,7 +72,7 @@ const monthlyData = [
     distance: 2.8, 
     monthName: "July 2025",
     dailyAnomalies: [1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    dailyDistances: [0.09, 0.10, 0.08, 0.11, 0.09, 0.10, 0.08, 0.12, 0.09, 0.08, 0.10, 0.11, 0.09, 0.08, 0.10, 0.09, 0.11, 0.08, 0.10, 0.09, 0.08, 0.11, 0.10, 0.09, 0.08, 0.10, 0.11, 0.09, 0.08, 0.10, 0.09]
+    dailyDistances: [0.9, 1.0, 0.8, 1.1, 0.9, 1.0, 0.8, 1.2, 0.9, 0.8, 1.0, 1.1, 0.9, 0.8, 1.0, 0.9, 1.1, 0.8, 1.0, 0.9, 0.8, 1.1, 1.0, 0.9, 0.8, 1.0, 1.1, 0.9, 0.8, 1.0, 0.9]
   },
   { 
     month: "Aug", 
@@ -80,7 +80,7 @@ const monthlyData = [
     distance: 2.2, 
     monthName: "August 2025",
     dailyAnomalies: [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    dailyDistances: [0.07, 0.08, 0.06, 0.09, 0.07, 0.08, 0.06, 0.10, 0.07, 0.06, 0.08, 0.09, 0.07, 0.06, 0.08, 0.07, 0.09, 0.06, 0.08, 0.07, 0.06, 0.09, 0.08, 0.07, 0.06, 0.08, 0.09, 0.07, 0.06, 0.08, 0.07]
+    dailyDistances: [0.7, 0.8, 0.6, 0.9, 0.7, 0.8, 0.6, 1.0, 0.7, 0.6, 0.8, 0.9, 0.7, 0.6, 0.8, 0.7, 0.9, 0.6, 0.8, 0.7, 0.6, 0.9, 0.8, 0.7, 0.6, 0.8, 0.9, 0.7, 0.6, 0.8, 0.7]
   },
   { 
     month: "Sep", 
@@ -88,7 +88,7 @@ const monthlyData = [
     distance: 1.7, 
     monthName: "September 2025",
     dailyAnomalies: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    dailyDistances: [0.05, 0.06, 0.04, 0.07, 0.05, 0.06, 0.04, 0.08, 0.05, 0.04, 0.06, 0.07, 0.05, 0.04, 0.06, 0.05, 0.07, 0.04, 0.06, 0.05, 0.04, 0.07, 0.06, 0.05, 0.04, 0.06, 0.07, 0.05, 0.04, 0.06]
+    dailyDistances: [0.5, 0.6, 0.4, 0.7, 0.5, 0.6, 0.4, 0.8, 0.5, 0.4, 0.6, 0.7, 0.5, 0.4, 0.6, 0.5, 0.7, 0.4, 0.6, 0.5, 0.4, 0.7, 0.6, 0.5, 0.4, 0.6, 0.7, 0.5, 0.4, 0.6]
   },
   { 
     month: "Oct", 
@@ -96,7 +96,7 @@ const monthlyData = [
     distance: 2.0, 
     monthName: "October 2025",
     dailyAnomalies: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    dailyDistances: [0.06, 0.07, 0.05, 0.08, 0.06, 0.07, 0.05, 0.09, 0.06, 0.05, 0.07, 0.08, 0.06, 0.05, 0.07, 0.06, 0.08, 0.05, 0.07, 0.06, 0.05, 0.08, 0.07, 0.06, 0.05, 0.07, 0.08, 0.06, 0.05, 0.07, 0.06]
+    dailyDistances: [0.6, 0.7, 0.5, 0.8, 0.6, 0.7, 0.5, 0.9, 0.6, 0.5, 0.7, 0.8, 0.6, 0.5, 0.7, 0.6, 0.8, 0.5, 0.7, 0.6, 0.5, 0.8, 0.7, 0.6, 0.5, 0.7, 0.8, 0.6, 0.5, 0.7, 0.6]
   },
   { 
     month: "Nov", 
@@ -104,7 +104,7 @@ const monthlyData = [
     distance: 2.4, 
     monthName: "November 2025",
     dailyAnomalies: [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    dailyDistances: [0.08, 0.09, 0.07, 0.10, 0.08, 0.09, 0.07, 0.11, 0.08, 0.07, 0.09, 0.10, 0.08, 0.07, 0.09, 0.08, 0.10, 0.07, 0.09, 0.08, 0.07, 0.10, 0.09, 0.08, 0.07, 0.09, 0.10, 0.08, 0.07, 0.09]
+    dailyDistances: [0.8, 0.9, 0.7, 1.0, 0.8, 0.9, 0.7, 1.1, 0.8, 0.7, 0.9, 1.0, 0.8, 0.7, 0.9, 0.8, 1.0, 0.7, 0.9, 0.8, 0.7, 1.0, 0.9, 0.8, 0.7, 0.9, 1.0, 0.8, 0.7, 0.9]
   },
   { 
     month: "Dec", 
@@ -112,7 +112,7 @@ const monthlyData = [
     distance: 2.1, 
     monthName: "December 2025",
     dailyAnomalies: [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    dailyDistances: [0.07, 0.08, 0.06, 0.09, 0.07, 0.08, 0.06, 0.10, 0.07, 0.06, 0.08, 0.09, 0.07, 0.06, 0.08, 0.07, 0.09, 0.06, 0.08, 0.07, 0.06, 0.09, 0.08, 0.07, 0.06, 0.08, 0.09, 0.07, 0.06, 0.08, 0.07]
+    dailyDistances: [0.7, 0.8, 0.6, 0.9, 0.7, 0.8, 0.6, 1.0, 0.7, 0.6, 0.8, 0.9, 0.7, 0.6, 0.8, 0.7, 0.9, 0.6, 0.8, 0.7, 0.6, 0.9, 0.8, 0.7, 0.6, 0.8, 0.9, 0.7, 0.6, 0.8, 0.7]
   },
 ];
 
@@ -163,7 +163,16 @@ const mockData = {
 const SummaryScreen = () => {
   const [selectedRange, setSelectedRange] = useState("1y");
   const [selectedMonthIndex, setSelectedMonthIndex] = useState(10); // November
+  const [screenData, setScreenData] = useState(Dimensions.get('window'));
   const monthListRef = useRef(null);
+  
+  React.useEffect(() => {
+    const subscription = Dimensions.addEventListener('change', ({ window }) => {
+      setScreenData(window);
+    });
+    return () => subscription?.remove();
+  }, []);
+  
   const currentData = mockData[selectedRange];
   const selectedMonth = monthlyData[selectedMonthIndex];
 
@@ -284,11 +293,11 @@ const SummaryScreen = () => {
             <View style={styles.staticChartFrame}>
               {/* Y-Axis (Static) */}
               <View style={styles.staticYAxis}>
-                <Text style={styles.yAxisLabel}>1.2 km</Text>
-                <Text style={styles.yAxisLabel}>0.9 km</Text>
-                <Text style={styles.yAxisLabel}>0.6 km</Text>
-                <Text style={styles.yAxisLabel}>0.3 km</Text>
-                <Text style={styles.yAxisLabel}>0.0 km</Text>
+                <Text style={styles.yAxisLabel}>2.0</Text>
+                <Text style={styles.yAxisLabel}>1.5</Text>
+                <Text style={styles.yAxisLabel}>1.0</Text>
+                <Text style={styles.yAxisLabel}>0.5</Text>
+                <Text style={styles.yAxisLabel}>0.0</Text>
               </View>
               
               {/* Chart Content Area */}
@@ -309,8 +318,8 @@ const SummaryScreen = () => {
                 >
                   <View style={styles.chartDataContainer}>
                     {selectedMonth.dailyDistances.map((value, index) => {
-                      const maxValue = 0.12;
-                      const barHeight = Math.max((value / maxValue) * 140, 3);
+                      const maxValue = 2.0;
+                      const barHeight = Math.max((value / maxValue) * 140, 2);
                       return (
                         <View key={index} style={styles.dataColumn}>
                           <View style={styles.dataArea}>
@@ -319,7 +328,7 @@ const SummaryScreen = () => {
                                 styles.distanceBar, 
                                 { 
                                   height: barHeight,
-                                  top: 140 - barHeight
+                                  bottom: 0
                                 }
                               ]} 
                             />
@@ -391,7 +400,7 @@ const SummaryScreen = () => {
                   <View style={styles.chartDataContainer}>
                     {selectedMonth.dailyAnomalies.map((value, index) => {
                       const maxValue = 4;
-                      const dotPosition = value > 0 ? ((4 - value) / 4) * 140 : null;
+                      const dotPosition = value > 0 ? (140 - (value / maxValue) * 140) : null;
                       return (
                         <View key={index} style={styles.dataColumn}>
                           <View style={styles.dataArea}>
@@ -445,7 +454,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: screenWidth < 400 ? 12 : 20,
     paddingTop: 8,
     backgroundColor: "#FFFFFF",
   },
@@ -473,7 +482,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 24,
-    gap: 12,
+    gap: screenWidth < 400 ? 8 : 12,
   },
   summaryCard: {
     flex: 1,
@@ -608,9 +617,12 @@ const styles = StyleSheet.create({
   },
   chartWrapper: {
     alignItems: "center",
+    width: "100%",
+    paddingHorizontal: 4,
   },
   staticChartFrame: {
-    width: chartWidth,
+    width: "100%",
+    maxWidth: chartWidth,
     height: 250,
     backgroundColor: "#FFFFFF",
     borderRadius: 16,
@@ -667,14 +679,14 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
   dataColumn: {
-    width: 20,
+    width: screenWidth < 400 ? 16 : 20,
     height: 140,
-    marginHorizontal: 1.5,
+    marginHorizontal: screenWidth < 400 ? 1 : 1.5,
     justifyContent: "flex-end",
     alignItems: "center",
   },
   dataArea: {
-    width: 16,
+    width: screenWidth < 400 ? 12 : 16,
     height: 140,
     position: "relative",
   },
@@ -695,7 +707,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   xAxisLabelContainer: {
-    width: 23,
+    width: screenWidth < 400 ? 19 : 23,
     alignItems: "center",
   },
   xAxisLabel: {
@@ -712,12 +724,12 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   anomalyDot: {
-    width: 8,
-    height: 8,
+    width: screenWidth < 400 ? 6 : 8,
+    height: screenWidth < 400 ? 6 : 8,
     backgroundColor: "#6B7280",
-    borderRadius: 4,
+    borderRadius: screenWidth < 400 ? 3 : 4,
     position: "absolute",
-    left: 4,
+    left: screenWidth < 400 ? 3 : 4,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -727,13 +739,13 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
   },
   distanceBar: {
-    width: 14,
+    width: screenWidth < 400 ? 10 : 14,
     backgroundColor: "#FF8C1A",
-    borderRadius: 6,
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
+    borderRadius: screenWidth < 400 ? 4 : 6,
+    borderTopLeftRadius: screenWidth < 400 ? 4 : 6,
+    borderTopRightRadius: screenWidth < 400 ? 4 : 6,
     position: "absolute",
-    left: 1,
+    left: screenWidth < 400 ? 1 : 1,
     shadowColor: "#FF8C1A",
     shadowOffset: {
       width: 0,
